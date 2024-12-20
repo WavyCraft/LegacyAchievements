@@ -40,13 +40,7 @@ use pocketmine\Server;
 
 class EventListener implements Listener {
 
-    private $plugin;
-
     private array $furnaceToPlayer = [];
-
-    public function __construct() {
-        $this->plugin = Loader::getInstance();
-    }
 
     public function onPlayerJoin(PlayerJoinEvent $event) : void{
         AchievementManager::getInstance()->initiateAchievements($event->getPlayer());
