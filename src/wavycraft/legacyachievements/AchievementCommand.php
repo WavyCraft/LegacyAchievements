@@ -47,7 +47,7 @@ class AchievementCommand extends Command {
         $this->sendMainMenu($sender);
     }
 
-    private function sendMainMenu(Player $player): void {
+    private function sendMainMenu(Player $player) : void{
         $form = new SimpleForm(function (Player $player, ?int $data) {
             if ($data === null) {
                 return;
@@ -112,7 +112,7 @@ class AchievementCommand extends Command {
             $this->sendOtherPlayerAchievements($player, $selectedPlayer);
         });
 
-        $form->setTitle("Other Players' Achievements");
+        $form->setTitle("Other Players Achievements");
         $options = [];
         foreach ($playerData as $uuid => $data) {
             $options[] = $data["username"];
