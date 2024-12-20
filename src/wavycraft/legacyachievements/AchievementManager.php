@@ -112,6 +112,11 @@ final class AchievementManager {
             "description" => "Deal nine hearts of damage in a single hit",
             "requires" => ["enchantments"],
         ],
+        "bookcase" => [
+            "name" => "Librarian",
+            "description" => "Build some bookshelves to improve your enchantment table",
+            "requires" => ["enchantments"],
+        ],
         "overpowered" => [
             "name" => "Overpowered",
             "description" => "Eat the Notch apple",
