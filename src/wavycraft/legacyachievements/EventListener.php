@@ -109,6 +109,7 @@ class EventListener implements Listener {
             ];
             $cake = StringToItemParser::getInstance()->parse("cake");
             $enchantmentTable = StringToItemParser::getInstance()->parse("enchanting_table");
+            $bookShelf = StringToItemParser::getInstance()->parse("bookshelf");
 
             if ($craftingTable !== null && $item->equals($craftingTable)) {
                 $am->unlockAchievement($player, "buildWorkBench");
@@ -128,6 +129,8 @@ class EventListener implements Listener {
                 $am->unlockAchievement($player, "bakeCake");
             } elseif ($enchantmentTable !== null && $item->equals($enchantmentTable)) {
                 $am->unlockAchievement($player, "enchantments");
+            } elseif ($bookShelf !== null && $item->equals($bookShelf)) {
+                $am->unlockAchievement($player, "bookcase");
             }
         }
     }
