@@ -21,17 +21,21 @@ declare(strict_types=1);
 namespace wavycraft\legacyachievements;
 
 use pocketmine\event\Listener;
-use pocketmine\event\entity\EntityItemPickupEvent;
 use pocketmine\event\inventory\CraftItemEvent;
+use pocketmine\event\inventory\FurnaceSmeltEvent;
 use pocketmine\event\player\PlayerItemConsumeEvent;
 use pocketmine\event\player\PlayerJoinEvent;
-use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\event\entity\EntityItemPickupEvent;
+
 use pocketmine\block\Furnace;
-use pocketmine\event\inventory\FurnaceSmeltEvent;
+
 use pocketmine\item\StringToItemParser;
 use pocketmine\item\Item;
+
 use pocketmine\player\Player;
+
 use pocketmine\Server;
 
 class EventListener implements Listener {
@@ -44,11 +48,11 @@ class EventListener implements Listener {
         $this->plugin = Loader::getInstance();
     }
 
-    public function onPlayerJoin(PlayerJoinEvent $event): void {
+    public function onPlayerJoin(PlayerJoinEvent $event) : void{
         AchievementManager::getInstance()->initiateAchievements($event->getPlayer());
     }
 
-    public function onItemPickup(EntityItemPickupEvent $event): void {
+    public function onItemPickup(EntityItemPickupEvent $event) : void{
         $entity = $event->getEntity();
         $item = $event->getItem();
 
@@ -77,12 +81,12 @@ class EventListener implements Listener {
         }
     }
 
-    public function onCraftItem(CraftItemEvent $event): void {
+    public function onCraftItem(CraftItemEvent $event) : void{
         $player = $event->getPlayer();
         $outputs = $event->getOutputs();
         $am = AchievementManager::getInstance();
 
-        foreach ($outputs as $item) {
+        foreach ($outputs as $item) {//found better results using StringToItemParser::class.... dont even say anything....
             $craftingTable = StringToItemParser::getInstance()->parse("crafting_table");
             $pickaxe = StringToItemParser::getInstance()->parse("wooden_pickaxe");
             $betterPickaxes = [
@@ -134,7 +138,7 @@ class EventListener implements Listener {
         }
     }
 
-    private function matchesItem(Item $item, array $items): bool {
+    private function matchesItem(Item $item, array $items) : bool{
         foreach ($items as $matchItem) {
             if ($matchItem !== null && $item->equals($matchItem)) {
                 return true;
@@ -143,7 +147,7 @@ class EventListener implements Listener {
         return false;
     }
 
-    public function onPlayerInteract(PlayerInteractEvent $event): void {
+    public function onPlayerInteract(PlayerInteractEvent $event) : void{
         $player = $event->getPlayer();
         $block = $event->getBlock();
 
@@ -152,7 +156,7 @@ class EventListener implements Listener {
         }
     }
 
-    public function onFurnaceSmelt(FurnaceSmeltEvent $event): void {
+    public function onFurnaceSmelt(FurnaceSmeltEvent $event) : void{
         $furnacePos = $event->getBlock()->getPosition()->asVector3()->__toString();
         $result = $event->getResult();
 
@@ -169,7 +173,7 @@ class EventListener implements Listener {
         }
     }
 
-    public function onPlayerItemConsume(PlayerItemConsumeEvent $event): void {
+    public function onPlayerItemConsume(PlayerItemConsumeEvent $event) : void{
         $player = $event->getPlayer();
         $item = $event->getItem();
 
@@ -179,7 +183,7 @@ class EventListener implements Listener {
         }
     }
 
-    public function onEntityDamageByEntity(EntityDamageByEntityEvent $event): void {
+    public function onEntityDamageByEntity(EntityDamageByEntityEvent $event) : void{
         $damager = $event->getDamager();
 
         if ($damager instanceof Player && $event->getFinalDamage() >= 18) {
