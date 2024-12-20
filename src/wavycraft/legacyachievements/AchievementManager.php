@@ -178,6 +178,10 @@ final class AchievementManager {
         return $this->playerData[$uuid]["achievements"] ?? [];
     }
 
+    public function getPlayerData() : array{
+        return $this->playerData;
+    }
+
     private function loadPlayerData() : void{
         $this->config = new Config($this->plugin->getDataFolder() . "achievements.json", Config::JSON);
         $this->playerData = $this->config->getAll();
