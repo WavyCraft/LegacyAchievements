@@ -8,5 +8,5 @@ Note: Some achievements have been left out due to pmmp limitations such as; Taki
 **I will add more legacy achievements once pmmp adds new features.**
 
 # TODO
-- [ ] Commands to view your progress/description and others
+- [x] Commands to view your progress/description and others
 - [ ] Add more achievements
