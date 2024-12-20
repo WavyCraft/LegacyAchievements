@@ -119,7 +119,7 @@ final class AchievementManager {
         $this->loadPlayerData();
     }
 
-    public function initiateAchievements(Player $player): void {
+    public function initiateAchievements(Player $player) : void{
         $uuid = $player->getUniqueId()->toString();
         if (!isset($this->playerData[$uuid])) {
             $this->playerData[$uuid] = [];
@@ -130,7 +130,7 @@ final class AchievementManager {
         }
     }
 
-    public function unlockAchievement(Player $player, string $achievementKey): void {
+    public function unlockAchievement(Player $player, string $achievementKey) : void{
         $uuid = $player->getUniqueId()->toString();
 
         if (!isset(self::$list[$achievementKey]) || empty($this->playerData[$uuid])) {
@@ -155,17 +155,17 @@ final class AchievementManager {
         }
     }
 
-    public function getPlayerAchievements(Player $player): array {
+    public function getPlayerAchievements(Player $player) : array{
         $uuid = $player->getUniqueId()->toString();
         return $this->playerData[$uuid] ?? [];
     }
 
-    private function loadPlayerData(): void {
+    private function loadPlayerData() : void{
         $this->config = new Config($this->plugin->getDataFolder() . "achievements.json", Config::JSON);
         $this->playerData = $this->config->getAll();
     }
 
-    private function savePlayerData(): void {
+    private function savePlayerData() : void{
         $this->config->setAll($this->playerData);
         $this->config->save();
     }
