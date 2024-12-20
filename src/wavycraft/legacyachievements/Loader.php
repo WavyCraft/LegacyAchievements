@@ -32,6 +32,7 @@ final class Loader extends PluginBase {
 
     protected function onEnable() : void{
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
+        $this->getServer()->getCommandMap()->register("LegacyAchievements", new AchievementCommand());
     }
 
     public static function getInstance() : self{
