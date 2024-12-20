@@ -131,11 +131,19 @@ final class AchievementManager {
 
     public function initiateAchievements(Player $player) : void{
         $uuid = $player->getUniqueId()->toString();
+        $username = $player->getName();
+
         if (!isset($this->playerData[$uuid])) {
-            $this->playerData[$uuid] = [];
+            $this->playerData[$uuid] = [
+                "username" => $username,
+                "achievements" => []
+            ];
             foreach (self::$list as $key => $achievement) {
-                $this->playerData[$uuid][$key] = false;
+                $this->playerData[$uuid]["achievements"][$key] = false;
             }
+            $this->savePlayerData();
+        } elseif ($this->playerData[$uuid]["username"] !== $username) {
+            $this->playerData[$uuid]["username"] = $username;
             $this->savePlayerData();
         }
     }
@@ -151,13 +159,13 @@ final class AchievementManager {
         $requires = $achievement["requires"];
 
         foreach ($requires as $requirement) {
-            if (empty($this->playerData[$uuid][$requirement])) {
+            if (empty($this->playerData[$uuid]["achievements"][$requirement])) {
                 return;
             }
         }
 
-        if (!$this->playerData[$uuid][$achievementKey]) {
-            $this->playerData[$uuid][$achievementKey] = true;
+        if (!$this->playerData[$uuid]["achievements"][$achievementKey]) {
+            $this->playerData[$uuid]["achievements"][$achievementKey] = true;
             Server::getInstance()->broadcastMessage(
                 $player->getName() . " has just earned the achievement " . TextColor::GREEN . "[" . $achievement["name"] . "]"
             );
@@ -167,7 +175,7 @@ final class AchievementManager {
 
     public function getPlayerAchievements(Player $player) : array{
         $uuid = $player->getUniqueId()->toString();
-        return $this->playerData[$uuid] ?? [];
+        return $this->playerData[$uuid]["achievements"] ?? [];
     }
 
     private function loadPlayerData() : void{
