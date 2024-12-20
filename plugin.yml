@@ -5,3 +5,7 @@ author:
  - Terpz710
 api: 5.0.0
 main: wavycraft\legacyachievements\Loader
+
+permissions:
+  legacyachievements.cmd:
+    default: true
