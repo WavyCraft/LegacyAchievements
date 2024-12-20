@@ -46,7 +46,7 @@ final class AchievementManager {
             "name" => "Taking Inventory",
             "description" => "Press Inventory Key to open your inventory",
             "requires" => [],
-            ],
+        ],
         "mineWood" => [
             "name" => "Getting Wood",
             "description" => "Attack a tree until a block of wood pops out",
