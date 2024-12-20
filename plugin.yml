@@ -1,0 +1,7 @@
+name: LegacyAchievements
+version: 1.0.0
+author:
+ - WavyCraftNetwork
+ - Terpz710
+api: 5.0.0
+main: wavycraft\legacyachievements\Loader
