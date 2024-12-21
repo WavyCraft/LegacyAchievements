@@ -7,6 +7,10 @@ Note: Some achievements have been left out due to pmmp limitations such as; Taki
 
 **I will add more legacy achievements once pmmp adds new features.**
 
+# DEPENDENCY
+
+This plugin requires [FormAPI](https://poggit.pmmp.io/ci/jojoe77777/FormAPI/libFormAPI) by Jojo7777!
+
 # TODO
 - [x] Commands to view your progress/description and others
 - [ ] Add more achievements
