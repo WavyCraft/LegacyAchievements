@@ -159,7 +159,7 @@ class AchievementCommand extends Command implements PluginOwned {
         $player->sendForm($form);
     }
 
-    protected function getOwningPlugin() : Plugin{
+    public function getOwningPlugin() : Plugin{
         return $this->plugin;
     }
 }
