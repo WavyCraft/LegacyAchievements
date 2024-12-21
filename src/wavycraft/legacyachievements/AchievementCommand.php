@@ -25,17 +25,22 @@ use pocketmine\command\CommandSender;
 
 use pocketmine\player\Player;
 
-use wavycraft\legacyachievements\AchievementManager;
+use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginOwned;
 
 use jojoe77777\FormAPI\SimpleForm;
 use jojoe77777\FormAPI\ModalForm;
 use jojoe77777\FormAPI\CustomForm;
 
-class AchievementCommand extends Command {
+class AchievementCommand extends Command implements PluginOwned {
+
+    private $plugin;
 
     public function __construct() {
         parent::__construct("achievements", "View achievements", "/achievements");
         $this->setPermission("legacyachievements.cmd");
+
+        $this->plugin = Loader::getInstance();
     }
 
     public function execute(CommandSender $sender, string $label, array $args) : void{
@@ -152,5 +157,9 @@ class AchievementCommand extends Command {
         $form->setButton1("Done");
         $form->setButton2("Back");
         $player->sendForm($form);
+    }
+
+    protected function getOwningPlugin() : Plugin{
+        return $this->plugin;
     }
 }
