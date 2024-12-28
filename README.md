@@ -15,7 +15,7 @@ Note: Some achievements have been left out due to pmmp limitations such as; Taki
 **I will add more legacy achievements once pmmp adds new features.**
 
 # How to install
-Litteraly just put the .phar inside the plugins folder, restart/start your server and boom. Players can now earn achievements that were added back in Minecraft Java Edition BETA v1.5!
+Litteraly just put the .phar inside the plugins folder, restart/start your server and boom. Players can now earn achievements that were added back in Minecraft Java Edition BETA v1.5(2011)!
 
 # DEPENDENCY
 
