@@ -28,6 +28,9 @@ use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityItemPickupEvent;
+use pocketmine\event\server\DataPacketReceiveEvent;
+
+use pocketmine\network\mcpe\protocol\InteractPacket;
 
 use pocketmine\block\Furnace;
 
@@ -37,6 +40,8 @@ use pocketmine\item\Item;
 use pocketmine\player\Player;
 
 use pocketmine\Server;
+
+use wavycraft\legacyachievements\event\PlayerOpenInventoryEvent;
 
 class EventListener implements Listener {
 
@@ -186,5 +191,19 @@ class EventListener implements Listener {
         if ($damager instanceof Player && $event->getFinalDamage() >= 18) {
             AchievementManager::getInstance()->unlockAchievement($damager, "overkill");
         }
+    }
+
+    public function onDataPacketReceive(DataPacketReceiveEvent $event) : void{
+        $player = $event->getOrigin()->getPlayer();
+        $packet = $event->getPacket();
+
+        if ($packet instanceof InteractPacket && $packet->action === InteractPacket::ACTION_OPEN_INVENTORY) {
+            $ev = new PlayerOpenInventoryEvent($player);
+            $ev->call();
+        }
+    }
+
+    public function onOpenInventory(PlayerOpenInventoryEvent $event) : void{
+        AchievementManager::getInstance()->unlockAchievement($event->getPlayer(), "openInventory");
     }
 }
