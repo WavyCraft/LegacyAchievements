@@ -41,6 +41,8 @@ use pocketmine\player\Player;
 
 use pocketmine\Server;
 
+use wavycraft\legacyachievements\event\PlayerOpenInventoryEvent;
+
 class EventListener implements Listener {
 
     private array $furnaceToPlayer = [];
