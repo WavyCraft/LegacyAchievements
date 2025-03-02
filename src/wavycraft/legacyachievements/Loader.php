@@ -24,7 +24,7 @@ use pocketmine\plugin\PluginBase;
 
 final class Loader extends PluginBase {
 
-    protected static $instance;
+    protected static self $instance;
 
     protected function onLoad() : void{
         self::$instance = $this;
