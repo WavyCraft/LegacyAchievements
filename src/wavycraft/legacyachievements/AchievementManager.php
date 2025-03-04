@@ -42,15 +42,15 @@ final class AchievementManager {
      * Added some missing achievements but not all!
      */
     public static array $list = [
-        //"openInventory" => [
-            //"name" => "Taking Inventory",
-            //"description" => "Press Inventory Key to open your inventory",
-            //"requires" => [],
-        //],
+        "openInventory" => [
+            "name" => "Taking Inventory",
+            "description" => "Press Inventory Key to open your inventory",
+            "requires" => [],
+        ],
         "mineWood" => [
             "name" => "Getting Wood",
             "description" => "Attack a tree until a block of wood pops out",
-            "requires" => [],
+            "requires" => ["openInventory"],
         ],
         "buildWorkBench" => [
             "name" => "Benchmarking",

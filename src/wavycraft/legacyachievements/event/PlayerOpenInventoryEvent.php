@@ -12,30 +12,25 @@
  *             |___/            |___/
  *
  * Created by Terpz710
- * Coded: December 3, 2024 at 6:30am PST
+ * Coded: March 2, 2025 at 2:23am PST
  *
  */
 
 declare(strict_types=1);
 
-namespace wavycraft\legacyachievements;
+namespace wavycraft\legacyachievements\event;
 
-use pocketmine\plugin\PluginBase;
+use pocketmine\event\Event;
 
-final class Loader extends PluginBase {
+use pocketmine\player\Player;
 
-    protected static self $instance;
+class PlayerOpenInventoryEvent extends Event {
 
-    protected function onLoad() : void{
-        self::$instance = $this;
+    public function __construct(protected Player $player) {
+        $this->player = $player;
     }
 
-    protected function onEnable() : void{
-        $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
-        $this->getServer()->getCommandMap()->register("LegacyAchievements", new AchievementCommand());
-    }
-
-    public static function getInstance() : self{
-        return self::$instance;
+    public function getPlayer() : Player{
+        return $this->player;
     }
 }
